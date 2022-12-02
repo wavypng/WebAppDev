@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+
+
+<%= form_with url: students_url, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+
+  Search Student Name <%= form.search_field :query, value: params[:query], onsubmit: "this.form.requestSubmit()" %>
+
+  
+
+<% end %>
+
+<%= turbo_frame_tag "results" do %>
+
+  <div id="students">
+
+    <% @students.each do |student| %>
+
+      <%= render student %>
+
+      <p>
+
+      <b><%= link_to  "Show this student", student %></b>
+
+      </p>
+
+    <% end %>
+
+  </div>
+
+<% end %>
+
+<b><%= link_to "New student", new_student_path %></b>

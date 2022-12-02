@@ -1,0 +1,30 @@
+
+
+
+<%= form_with url: prefixes_url, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+
+  Prefix Search <%= form.search_field :query, value: params[:query], onsubmit: "this.form.requestSubmit()" %>
+
+<% end %>
+
+<%= turbo_frame_tag "results" do %>
+
+  <div id="prefix">
+
+    <% @prefixes.each do |prefix| %>
+
+      <%= render prefix %>
+
+      <p>
+
+      <b> <%= link_to "Show this prefix", prefix %> </b>
+
+      </p>
+
+    <% end %>
+
+  </div>
+
+<% end %>
+
+<b> <%= link_to "New prefix", new_prefix_path %> </b>
